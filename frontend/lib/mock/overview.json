@@ -1,0 +1,125 @@
+{
+  "feedHealth": 64,
+  "platforms": [
+    { "id": "youtube", "label": "YouTube", "status": "active" },
+    { "id": "reddit", "label": "Reddit", "status": "soon" },
+    { "id": "instagram", "label": "Instagram", "status": "soon" }
+  ],
+  "tiers": [
+    {
+      "id": "touch",
+      "title": "Cultural touchpoints",
+      "desc": "Baseline content. Expected to make up most of any feed.",
+      "color": "var(--t-touch)",
+      "dimensions": [
+        {
+          "code": "CULT_TOUCH",
+          "name": "Cultural touchpoints",
+          "sub": "Sports, gaming, fitness, general lifestyle",
+          "score": 68,
+          "level": "common",
+          "evidence": { "quote": "Leg day complete, full lower body breakdown", "source": "Video watched · FitnessLab", "confidence": 91 },
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "status",
+      "title": "Procuring masculine status",
+      "desc": "Content about achieving or performing masculinity.",
+      "color": "var(--t-status)",
+      "dimensions": [
+        {
+          "code": "DOM_AUTH",
+          "name": "Dominance & authority",
+          "sub": "Alpha framing, hierarchy, control",
+          "score": 42,
+          "level": "moderate",
+          "evidence": { "quote": "The alpha mindset is what separates winners from everyone else in the room", "source": "Video watched · Grindset Daily", "confidence": 77 },
+          "note": null
+        },
+        {
+          "code": "PHYS_APPEAR",
+          "name": "Physical enhancement",
+          "sub": "Appearance, looksmaxxing, gym culture",
+          "score": 55,
+          "level": "moderate",
+          "evidence": { "quote": "3 jawline exercises that actually work (do this daily)", "source": "Video watched · LooksLab", "confidence": 84 },
+          "note": null
+        },
+        {
+          "code": "STAT_MATER",
+          "name": "Material & financial status",
+          "sub": "Hustle culture, wealth signaling",
+          "score": 61,
+          "level": "high",
+          "evidence": { "quote": "How I escaped the matrix and made $10k this month", "source": "Video watched · WealthMindset", "confidence": 88 },
+          "note": null
+        },
+        {
+          "code": "COMP_GRIND",
+          "name": "Competition & grind",
+          "sub": "Win-at-all-costs, outwork everyone",
+          "score": 38,
+          "level": "moderate",
+          "evidence": { "quote": "No days off. Outwork everyone. That's the whole plan.", "source": "Comment on watched video", "confidence": 70 },
+          "note": null
+        },
+        {
+          "code": "INDEP_AUT",
+          "name": "Hyper-independence",
+          "sub": "Lone wolf, self-reliance, distrust",
+          "score": 30,
+          "level": "low",
+          "evidence": { "quote": "Trust no one, rely on yourself, that's lone wolf energy", "source": "Video watched · Solo Mindset", "confidence": 66 },
+          "note": null
+        },
+        {
+          "code": "PROV_PROT",
+          "name": "Provider & protector",
+          "sub": "Traditional duty, guardian role",
+          "score": 22,
+          "level": "low",
+          "evidence": { "quote": "Why showing up for your family is the real flex", "source": "Video watched · Grounded", "confidence": 58 },
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "wellbeing",
+      "title": "Social & emotional wellbeing",
+      "desc": "Where harm, if any, tends to concentrate.",
+      "color": "var(--t-wellbeing)",
+      "dimensions": [
+        {
+          "code": "EMOT_STOIC",
+          "name": "Emotional stoicism",
+          "sub": "“Man up” culture, emotional suppression",
+          "score": 71,
+          "level": "high",
+          "evidence": { "quote": "Just man up bro, feelings are for the weak", "source": "Comment on watched video", "confidence": 89 },
+          "note": "This is the strongest signal in your feed this week. See the recommendation below."
+        },
+        {
+          "code": "AGGR_FORCE",
+          "name": "Aggression & combativeness",
+          "sub": "Hostility, conquest, enemy framing",
+          "score": 19,
+          "level": "low",
+          "evidence": { "quote": "Destroy your leg day, obliterate your PR", "source": "Video watched · FitnessLab", "confidence": 41 },
+          "note": "Low confidence. This looks like ordinary fitness language, not hostility, so it is flagged for review."
+        },
+        {
+          "code": "TOXIC_HOST",
+          "name": "Hostile / degrading discourse",
+          "sub": "Misogyny, red/black pill framing",
+          "score": 12,
+          "level": "low",
+          "evidence": { "quote": "No matching content found this week", "source": "No source", "confidence": null },
+          "note": null
+        }
+      ]
+    }
+  ],
+  "recommendation": "Your feed leans heavy on stoicism and hustle-culture framing this week (“man up,” “escape the matrix”). Neither is harmful on its own, but together they crowd out room for content on rest, emotional processing, or asking for help. A couple of channels cover similar ground, self-improvement and discipline, without the suppression framing: Dr. Mike (health), The Real MVW (mental health for men), HealthyGamerGG."
+}

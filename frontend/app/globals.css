@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Two palettes, split by job:
+    - Structure  #F8FAFC / #D9EAFD / #BCCCDC / #9AA6B2  (ground, borders,
+      tracks, dividers). A neutral blue-grey family, so the chrome recedes.
+    - Signal     #1B2CC1 / #7692FF / #ABD2FA            (accent, severity).
+      Saturated, so meaning carries.
+  Plus near-black #0B0E14 as ink and as the top of the severity ramp, where
+  it reads as the heaviest possible weight. Not pure #000: a faint blue
+  cast keeps it in family.
+
+  Ground is #D9EAFD, light but saturated (luminance .81), so #7692FF only
+  reaches 2.4:1 against it and cannot carry anything sitting on the
+  background. Lighter blues are therefore used for fills INSIDE cards; only
+  the darker end appears directly on the ground.
+
+  Two independent color channels, so they never compete:
+    - Severity is ORDINAL: one ramp, deepening to black with exposure.
+    - Tier is CATEGORICAL: three separable values, fixed per tier.
+*/
+
+:root {
+  color-scheme: light dark;
+
+  --ground: #d9eafd;
+  --surface: #ffffff;
+  --surface-raised: #e4ecf7;
+  --ink: #0b0e14;
+  --ink-soft: #2e3a55;
+  /* Darker than the structure palette's own #9AA6B2, which reaches only
+     2.0:1 on this ground and so is reserved for borders, not text. */
+  --muted: #4e5a6b;
+  --border: #bcccdc;
+  --border-strong: #9aa6b2;
+
+  --accent: #1b2cc1;
+  --accent-2: #7692ff;
+  --accent-hover: #16249d;
+  --accent-soft: #e6ecfb;
+  --on-accent: #ffffff;
+
+  /* Quiet closing panel: the structure palette's muted slate pulled back
+     toward the page's blue, so it separates from both the white cards and
+     the ground without going grey and drab against them. */
+  --panel: #b5c9e2;
+  --panel-fg: #0b0e14;
+
+  /* Exposure ramp: deeper reads as more, ending in black. Cards only. */
+  --level-1: #7692ff;
+  --level-2: #1b2cc1;
+  --level-3: #0b0e14;
+  --level-track: #f8fafc;
+
+  --level-1-bg: #e4ecf9;
+  --level-1-fg: #24347e;
+  --level-2-bg: #d3def7;
+  --level-2-fg: #1b2cc1;
+  --level-3-bg: #0b0e14;
+  --level-3-fg: #ffffff;
+
+  /* Tier identity: fixed per tier, never driven by score. These sit on the
+     ground, so all three clear 3:1 there; #7692ff is too light to be one. */
+  --t-touch: #3f5bd9;
+  --t-status: #1b2cc1;
+  --t-wellbeing: #0b0e14;
+
+  /* Fluid type scale: continuous from 320px to 2560px */
+  --fs-xs: clamp(0.75rem, 0.727rem + 0.114vw, 0.8125rem);
+  --fs-sm: clamp(0.8125rem, 0.767rem + 0.227vw, 0.9375rem);
+  --fs-base: clamp(0.9375rem, 0.892rem + 0.227vw, 1.0625rem);
+  --fs-lg: clamp(1.0625rem, 0.972rem + 0.455vw, 1.3125rem);
+  --fs-xl: clamp(1.25rem, 1.068rem + 0.909vw, 1.75rem);
+  --fs-2xl: clamp(1.5rem, 1.136rem + 1.818vw, 2.5rem);
+  --fs-3xl: clamp(1.875rem, 1.284rem + 2.955vw, 3.5rem);
+
+  /* Fluid rhythm */
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --space-section: clamp(2.5rem, 1.8rem + 3.5vw, 5rem);
+  --space-block: clamp(1rem, 0.8rem + 1vw, 1.75rem);
+
+  --shell-max: 1200px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* Dark mode grounds on the same near-black and inverts the ramp, so
+       brighter reads as more exposure. The structure palette's #F8FAFC and
+       #9AA6B2 are used directly here: both read cleanly on black. */
+    --ground: #0b0e14;
+    --surface: #141a26;
+    --surface-raised: #1d2634;
+    --ink: #f8fafc;
+    --ink-soft: #c3cedb;
+    --muted: #9aa6b2;
+    --border: #2b3546;
+    --border-strong: #46536a;
+
+    --accent: #7692ff;
+    --accent-2: #abd2fa;
+    --accent-hover: #93a9ff;
+    --accent-soft: #1e2a5c;
+    --on-accent: #0b0e14;
+
+    --panel: #1d2634;
+    --panel-fg: #f8fafc;
+
+    --level-1: #4d5f9e;
+    --level-2: #7692ff;
+    --level-3: #abd2fa;
+    --level-track: #232d3d;
+
+    --level-1-bg: #1a2440;
+    --level-1-fg: #a9b6e0;
+    --level-2-bg: #23347e;
+    --level-2-fg: #c3d0ff;
+    --level-3-bg: #abd2fa;
+    --level-3-fg: #0b0e14;
+
+    --t-touch: #4a6df0;
+    --t-status: #7692ff;
+    --t-wellbeing: #abd2fa;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground: #0b0e14;
+  --surface: #141a26;
+  --surface-raised: #1d2634;
+  --ink: #f8fafc;
+  --ink-soft: #c3cedb;
+  --muted: #9aa6b2;
+  --border: #2b3546;
+  --border-strong: #46536a;
+
+  --accent: #7692ff;
+  --accent-2: #abd2fa;
+  --accent-hover: #93a9ff;
+  --accent-soft: #1e2a5c;
+  --on-accent: #0b0e14;
+
+  --panel: #1d2634;
+  --panel-fg: #f8fafc;
+
+  --level-1: #4d5f9e;
+  --level-2: #7692ff;
+  --level-3: #abd2fa;
+  --level-track: #232d3d;
+
+  --level-1-bg: #1a2440;
+  --level-1-fg: #a9b6e0;
+  --level-2-bg: #23347e;
+  --level-2-fg: #c3d0ff;
+  --level-3-bg: #abd2fa;
+  --level-3-fg: #0b0e14;
+
+  --t-touch: #4a6df0;
+  --t-status: #7692ff;
+  --t-wellbeing: #abd2fa;
+}
+
+/* Container widens on large monitors instead of stranding them in gutters. */
+@media (min-width: 1600px) {
+  :root {
+    --shell-max: 1440px;
+  }
+}
+@media (min-width: 2000px) {
+  :root {
+    --shell-max: 1680px;
+  }
+}
+@media (min-width: 2560px) {
+  :root {
+    --shell-max: 1920px;
+  }
+}
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: var(--shell-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+}
+
+/* Theme-toggle label: show the mode the button switches TO. Handled in CSS so
+   it is right at first paint instead of correcting itself after hydration. */
+:root[data-theme="light"] [data-theme-label="to-light"],
+:root[data-theme="dark"] [data-theme-label="to-dark"] {
+  display: none;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Motion is opt-out at the source, not per-component. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
